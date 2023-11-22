@@ -16,6 +16,12 @@
   --SectionBG: rgb(40 41 61 / 1);
   --Border: 1px solid rgb(50 51 77 / 1);
 }
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
@@ -362,11 +368,6 @@ template {
   display: none;
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
 
 .container {
   width: 1280px;
@@ -377,7 +378,7 @@ header {
   background-color: var(--MainBg);
   border-bottom: var(--Border);
   color: #fff;
-  padding: 1rem 0;
+  padding: 2rem;
   position: sticky;
   top: 0;
 }
@@ -588,6 +589,8 @@ button {
   cursor: pointer;
 }
 .ScrollUp {
+  display: inline-block;
+  width: 3rem;
   visibility: hidden;
   opacity: 0;
   position: fixed;
@@ -688,11 +691,32 @@ button {
   .container {
     width: 320px;
   }
+  header{
+    padding: 20px 0;
+  }
+  .DeleteModal{
+    padding: 30px 10px;
+  }
+  .DeleteModal__Header{
+    font-size: 12px;
+    line-height: 2.5rem;
+  }
+  .logo{
+   width: 20px;
+   height: 20px;
+  }
   .keycode__infoBoxes {
     flex-wrap: wrap;
   }
   .header__logo p {
-    font-size: 16px;
+    font-size: 14px;
+    line-height: 2rem;
+  }
+  .header__wrapper{
+    gap: 15px;
+  }
+  #TaskAlert{
+    line-height: 2rem;
   }
   form {
     flex-direction: column;
@@ -704,7 +728,7 @@ button {
     width: 100%;
   }
   .ScrollUp {
-    width: fit-content;
+    display: inline-block;
   }
   .ColorsBox {
     gap: 6px;
@@ -713,7 +737,7 @@ button {
 
 @media screen and (min-width: 500px) {
   .container {
-    width: 500px;
+    width: 320px;
   }
   .keycode__infoBoxes {
     flex-wrap: wrap;

@@ -102,6 +102,7 @@ function RedAlert() {
   TaskAlert.style.color = "#f43f5e";
 }
 function GreenAlert() {
+  AddNoteInput.value = "";
   TaskAlert.style.visibility = "visible";
   TaskAlert.style.opacity = 1;
   TaskAlert.style.color = "#22c55e";
@@ -109,7 +110,6 @@ function GreenAlert() {
 function EditNote(id, title) {
   let localStorageNotes = JSON.parse(localStorage.getItem("Note"));
   NoteItems = localStorageNotes;
-  AddNoteInput.value = "";
   NoteItems.forEach((NoteItem) => {
     if (NoteItem.id === id) {
       AddNoteBtn.classList.add("hidden");
@@ -217,6 +217,7 @@ AddNoteBtn.addEventListener("click", AddNewNote);
 window.addEventListener("load", GetLocalStorage);
 DeleteModalYesBtn.addEventListener('click' , ClearNote)
 DeleteModalNoBtn.addEventListener('click' , CloseModal);
+Overlay.addEventListener('click' , CloseModal)
 AddNoteInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter" && EditNoteBtn.classList.contains("hidden")) {
     AddNewNote();
