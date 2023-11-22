@@ -182,6 +182,7 @@ function ClearNote() {
 }
 // EventListener
 AddNoteBtn.addEventListener("click", AddNewNote);
+window.addEventListener("load", GetLocalStorage);
 AddNoteInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter" && EditNoteBtn.classList.contains("hidden")) {
     AddNewNote();
