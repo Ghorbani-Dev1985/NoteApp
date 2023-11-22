@@ -86,7 +86,44 @@ function NoteGenerator(NoteLists) {
     NoteItemsBody.append(NewDivEle);
   }
 }
-
+function EditNote(id, title) {
+  let localStorageNotes = JSON.parse(localStorage.getItem("Note"));
+  NoteItems = localStorageNotes;
+  AddNoteInput.value = "";
+  NoteItems.forEach((NoteItem) => {
+    if (NoteItem.id === id) {
+      AddNoteBtn.classList.add("hidden");
+      EditNoteBtn.classList.remove("hidden");
+      AddNoteInput.value = title;
+      AddNoteInput.focus();
+      EditNoteBtn.addEventListener("click", () => {
+        NoteItem.NoteTitle = AddNoteInput.value.trim();
+        NoteItem.NoteBgColor = NoteWrapper.style.backgroundColor;
+        SetLocalStorage(NoteItems);
+        NoteGenerator(NoteItems);
+        GreenAlert();
+        TaskAlert.innerHTML = `یادداشت با عنوان (${AddNoteInput.value}) با موفقیت ویرایش گردید.`;
+        AddNoteBtn.classList.remove("hidden");
+        EditNoteBtn.classList.add("hidden");
+        if (
+          AddNoteInput.addEventListener("keydown", (event) => {
+            if (
+              event.key === "Enter" &&
+              !EditNoteBtn.classList.contains("hidden")
+            ) {
+              NoteItem.NoteTitle = AddNoteInput.value.trim();
+              NoteItem.NoteBgColor = NoteWrapper.style.backgroundColor;
+              SetLocalStorage(NoteItems);
+              NoteGenerator(NoteItems);
+              GreenAlert();
+              TaskAlert.innerHTML = `یادداشت با عنوان (${AddNoteInput.value}) با موفقیت ویرایش گردید.`;
+            }
+          })
+        );
+      });
+    }
+  });
+}
 function DeleteNote(id, title) {
   let localStorageNotes = JSON.parse(localStorage.getItem("Note"));
   NoteItems = localStorageNotes;
