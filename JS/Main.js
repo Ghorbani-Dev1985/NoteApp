@@ -87,6 +87,31 @@ function NoteGenerator(NoteLists) {
   }
 }
 
+function DeleteNote(id, title) {
+  let localStorageNotes = JSON.parse(localStorage.getItem("Note"));
+  NoteItems = localStorageNotes;
+  let deleteNoteIndex = NoteItems.findIndex((note) => {
+    return note.id === id;
+  });
+  NoteItems.splice(deleteNoteIndex, 1);
+  RedAlert();
+  TaskAlert.innerHTML = `یادداشت با عنوان ${title} حذف گردید.`;
+  RemoveAlert();
+  SetLocalStorage(NoteItems);
+  NoteGenerator(NoteItems);
+  if (NoteItems.length === 0) window.location.reload();
+}
+function CompleteNote(id) {
+  let localStorageNotes = JSON.parse(localStorage.getItem("Note"));
+  NoteItems = localStorageNotes;
+  NoteItems.forEach((NoteItem) => {
+    if (NoteItem.id === id) {
+      NoteItem.isCompleted = !NoteItem.isCompleted;
+    }
+  });
+  SetLocalStorage(NoteItems);
+  NoteGenerator(NoteItems);
+}
 
 // EventListener
 AddNoteInput.addEventListener("keydown", (event) => {
