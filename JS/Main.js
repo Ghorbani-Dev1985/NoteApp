@@ -86,6 +86,12 @@ function NoteGenerator(NoteLists) {
     NoteItemsBody.append(NewDivEle);
   }
 }
+ColorBox.forEach((Colors) => {
+  Colors.addEventListener("click", (event) => {
+    let bgColor = event.target.style.backgroundColor;
+    NoteWrapper.style.backgroundColor = bgColor;
+  });
+});
 function RedAlert() {
   TaskAlert.style.visibility = "visible";
   TaskAlert.style.opacity = 1;
@@ -195,6 +201,9 @@ function ScrollTop(scrollY){
 
 
 // EventListener
+NoteForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+});
 AddNoteBtn.addEventListener("click", AddNewNote);
 window.addEventListener("load", GetLocalStorage);
 AddNoteInput.addEventListener("keydown", (event) => {
