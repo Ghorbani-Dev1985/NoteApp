@@ -45,7 +45,8 @@ function AddNewNote() {
 function SetLocalStorage(noteList) {
   localStorage.setItem("Note", JSON.stringify(noteList));
 }
-
+let id = null;
+let title = null;
 function NoteGenerator(NoteLists) {
   if (NoteLists.length > 0) {
     let NewDivEle, SpanEle, TrashImgEle, TickImgEle, EditImgEle, IconDiv;
@@ -63,8 +64,9 @@ function NoteGenerator(NoteLists) {
       TickImgEle.setAttribute("src", "./Assets/Images/tick.svg");
       EditImgEle.setAttribute("src", "./Assets/Images/edit.svg");
       TrashImgEle.setAttribute("src", "./Assets/Images/trash.svg");
-      TrashImgEle.addEventListener("click", () =>
-        DeleteNote(NoteList.id, NoteList.NoteTitle)
+      TrashImgEle.addEventListener("click", () =>{
+        DeleteNote(NoteList.id , NoteList.NoteTitle)
+      }
       );
       TickImgEle.addEventListener("click", () => CompleteNote(NoteList.id));
       EditImgEle.addEventListener("click", () =>
@@ -145,19 +147,24 @@ function EditNote(id, title) {
   });
 }
 function DeleteNote(id, title) {
-  let localStorageNotes = JSON.parse(localStorage.getItem("Note"));
-  NoteItems = localStorageNotes;
-  let deleteNoteIndex = NoteItems.findIndex((note) => {
-    return note.id === id;
-  });
-  NoteItems.splice(deleteNoteIndex, 1);
-  RedAlert();
-  TaskAlert.innerHTML = `یادداشت با عنوان ${title} حذف گردید.`;
-  RemoveAlert();
-  SetLocalStorage(NoteItems);
-  NoteGenerator(NoteItems);
-  if (NoteItems.length === 0) window.location.reload();
-}
+   let Confirm = confirm('آیا برای حذف یادداشت مطمعن هستید؟')
+
+   if(Confirm){
+     let localStorageNotes = JSON.parse(localStorage.getItem("Note"));
+     NoteItems = localStorageNotes;
+     let deleteNoteIndex = NoteItems.findIndex((note) => {
+       return note.id === id;
+     });
+     NoteItems.splice(deleteNoteIndex, 1);
+     RedAlert();
+     TaskAlert.innerHTML = `یادداشت با عنوان ${title} حذف گردید.`;
+     RemoveAlert();
+     SetLocalStorage(NoteItems);
+     NoteGenerator(NoteItems);
+     if (NoteItems.length === 0) window.location.reload();
+   }
+ }
+
 function CompleteNote(id) {
   let localStorageNotes = JSON.parse(localStorage.getItem("Note"));
   NoteItems = localStorageNotes;
@@ -199,6 +206,7 @@ function OpenModal(){
 }
 function CloseModal(){
   DeleteModal.style.display = 'none'
+  DeleteOneNoteModal.style.display = 'none'
   Overlay.style.display = 'none'
 }
 function ScrollTop(scrollY){
@@ -215,6 +223,7 @@ NoteForm.addEventListener("submit", (event) => {
 });
 AddNoteBtn.addEventListener("click", AddNewNote);
 window.addEventListener("load", GetLocalStorage);
+ClearInputBtn.addEventListener("click", OpenModal);
 DeleteModalYesBtn.addEventListener('click' , ClearNote)
 DeleteModalNoBtn.addEventListener('click' , CloseModal);
 Overlay.addEventListener('click' , CloseModal)
@@ -223,7 +232,6 @@ AddNoteInput.addEventListener("keydown", (event) => {
     AddNewNote();
   }
 });
-ClearInputBtn.addEventListener("click", OpenModal);
 ScrollUp.addEventListener("click", () => {
   scrollTo(0, 0);
 });
