@@ -149,7 +149,15 @@ function CompleteNote(id) {
   SetLocalStorage(NoteItems);
   NoteGenerator(NoteItems);
 }
-
+function GetLocalStorage() {
+  let getTodos = JSON.parse(localStorage.getItem("Note"));
+  if (getTodos) {
+    NoteItems = getTodos;
+  } else {
+    NoteItems = [];
+  }
+  NoteGenerator(NoteItems);
+}
 // EventListener
 AddNoteBtn.addEventListener("click", AddNewNote);
 AddNoteInput.addEventListener("keydown", (event) => {
