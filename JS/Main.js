@@ -86,6 +86,16 @@ function NoteGenerator(NoteLists) {
     NoteItemsBody.append(NewDivEle);
   }
 }
+function RedAlert() {
+  TaskAlert.style.visibility = "visible";
+  TaskAlert.style.opacity = 1;
+  TaskAlert.style.color = "#f43f5e";
+}
+function GreenAlert() {
+  TaskAlert.style.visibility = "visible";
+  TaskAlert.style.opacity = 1;
+  TaskAlert.style.color = "#22c55e";
+}
 function EditNote(id, title) {
   let localStorageNotes = JSON.parse(localStorage.getItem("Note"));
   NoteItems = localStorageNotes;
