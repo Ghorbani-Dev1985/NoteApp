@@ -168,6 +168,12 @@ function GetLocalStorage() {
   }
   NoteGenerator(NoteItems);
 }
+function RemoveAlert() {
+  setTimeout(() => {
+    TaskAlert.style.visibility = "hidden";
+    TaskAlert.style.opacity = 0;
+  }, 2000);
+}
 function ClearNote() {
   let Confirm = "آیا برای حذف همه یادداشت‌ها مطمعن هستید؟";
   if (confirm(Confirm) === true) {
