@@ -168,6 +168,18 @@ function GetLocalStorage() {
   }
   NoteGenerator(NoteItems);
 }
+function ClearNote() {
+  let Confirm = "آیا برای حذف همه یادداشت‌ها مطمعن هستید؟";
+  if (confirm(Confirm) === true) {
+    NoteItems = [];
+    NoteItemsBody.innerHTML = "";
+    localStorage.removeItem("Note");
+    RedAlert();
+    TaskAlert.innerHTML = `همه یادداشت‌ها حذف گردید.`;
+    window.location.reload();
+    RemoveAlert();
+  }
+}
 // EventListener
 AddNoteBtn.addEventListener("click", AddNewNote);
 AddNoteInput.addEventListener("keydown", (event) => {
@@ -175,3 +187,4 @@ AddNoteInput.addEventListener("keydown", (event) => {
     AddNewNote();
   }
 });
+ClearInputBtn.addEventListener("click", ClearNote);
