@@ -13,3 +13,37 @@ let NoteItem = $.querySelectorAll(".NoteItem");
 let ScrollUp = $.querySelector(".ScrollUp");
 let ScrollTopSection = $.querySelector(".ScrollTopSection");
 let NoteItems = [];
+
+
+function AddNewNote() {
+  let AddNoteInputValue = AddNoteInput.value.trim();
+  let BgColor = NoteWrapper.style.backgroundColor;
+  if (AddNoteInputValue) {
+    let NewNoteObj = {
+      id: NoteItems.length + 1,
+      NoteTitle: AddNoteInputValue,
+      NoteBgColor: BgColor,
+      isCompleted: false,
+    };
+    AddNoteInput.value = "";
+    GreenAlert();
+    TaskAlert.innerHTML = `یادداشت با عنوان (${AddNoteInputValue}) ثبت گردید.`;
+    NoteItems.push(NewNoteObj);
+    SetLocalStorage(NoteItems);
+    NoteGenerator(NoteItems);
+    AddNoteInput.focus();
+  } else {
+    RedAlert();
+    TaskAlert.innerHTML = `لطفا عنوان یادداشت را وارد نمایید`;
+    RemoveAlert();
+  }
+}
+
+
+
+// EventListener
+AddNoteInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" && EditNoteBtn.classList.contains("hidden")) {
+    AddNewNote();
+  }
+});
