@@ -186,6 +186,14 @@ function ClearNote() {
     RemoveAlert();
   }
 }
+function ScrollTop(scrollY){
+  let documentHeight = document.body.clientHeight;
+  let scrollPercent = (scrollY / (documentHeight ));
+  let scrollPercentRounded = Math.round(scrollPercent * 100);
+  ScrollTopSection.style.width = `${scrollPercentRounded}%`;
+}
+
+
 // EventListener
 AddNoteBtn.addEventListener("click", AddNewNote);
 window.addEventListener("load", GetLocalStorage);
@@ -195,3 +203,21 @@ AddNoteInput.addEventListener("keydown", (event) => {
   }
 });
 ClearInputBtn.addEventListener("click", ClearNote);
+ScrollUp.addEventListener("click", () => {
+  scrollTo(0, 0);
+});
+window.addEventListener("scroll", () => {
+  let scrollY = window.scrollY;
+  if ($.documentElement.scrollTop > 0) {
+    Header.classList.add("GlassBg");
+  }
+  if ($.documentElement.scrollTop >= 250) {
+    ScrollUp.style.visibility = "visible";
+    ScrollUp.style.opacity = 1;
+  } else {
+    Header.classList.remove("GlassBg");
+    ScrollUp.style.visibility = "hidden";
+    ScrollUp.style.opacity = 0;
+  }
+   ScrollTop(scrollY);
+});
