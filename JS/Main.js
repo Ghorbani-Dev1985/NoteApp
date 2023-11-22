@@ -14,6 +14,8 @@ const ScrollUp = $.querySelector(".ScrollUp");
 const ScrollTopSection = $.querySelector(".ScrollTopSection");
 const DeleteModal = $.querySelector('.DeleteModal')
 const Overlay = $.querySelector('.Overlay')
+const DeleteModalYesBtn = $.querySelector('#DeleteModal__YesBtn')
+const DeleteModalNoBtn = $.querySelector('#DeleteModal__NoBtn')
 let NoteItems = [];
 
 
@@ -183,8 +185,6 @@ function RemoveAlert() {
   }, 2000);
 }
 function ClearNote() {
-  let Confirm = "آیا برای حذف همه یادداشت‌ها مطمعن هستید؟";
-  if (confirm(Confirm) === true) {
     NoteItems = [];
     NoteItemsBody.innerHTML = "";
     localStorage.removeItem("Note");
@@ -192,7 +192,14 @@ function ClearNote() {
     TaskAlert.innerHTML = `همه یادداشت‌ها حذف گردید.`;
     window.location.reload();
     RemoveAlert();
-  }
+}
+function OpenModal(){
+  DeleteModal.style.display = 'block'
+  Overlay.style.display = 'block'
+}
+function CloseModal(){
+  DeleteModal.style.display = 'none'
+  Overlay.style.display = 'none'
 }
 function ScrollTop(scrollY){
   let documentHeight = document.body.clientHeight;
@@ -208,12 +215,14 @@ NoteForm.addEventListener("submit", (event) => {
 });
 AddNoteBtn.addEventListener("click", AddNewNote);
 window.addEventListener("load", GetLocalStorage);
+DeleteModalYesBtn.addEventListener('click' , ClearNote)
+DeleteModalNoBtn.addEventListener('click' , CloseModal);
 AddNoteInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter" && EditNoteBtn.classList.contains("hidden")) {
     AddNewNote();
   }
 });
-ClearInputBtn.addEventListener("click", ClearNote);
+ClearInputBtn.addEventListener("click", OpenModal);
 ScrollUp.addEventListener("click", () => {
   scrollTo(0, 0);
 });

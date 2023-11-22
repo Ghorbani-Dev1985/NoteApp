@@ -408,6 +408,9 @@ header {
 .hidden{
   display: none;
 }
+.block{
+  display: block;
+}
 .ScrollTopSection{
   position: fixed;
   height: 3px;
