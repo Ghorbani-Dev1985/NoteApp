@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> یادداشت‌ها</title>
+    <link rel="stylesheet" href="./Css/index.css" />
+    <link rel="icon" href="./Assets/Images/logo.svg" type="image/svg">
+  </head>
+  <body>
+    <section class="ScrollTopSection"></section>
+    <header id="Header">
+      <div class="container">
+        <section class="header__wrapper">
+          <div class="header__logo">
+            <img src="./Assets/Images/logo.svg" alt="logo" class="logo" />
+            <p> مدیریت یادداشت‌ها</p>
+          </div>
+          <p id="TaskAlert"></p>
+        </section>
+      </div>
+    </header>
+<main id="StartBox">
+  <div class="container">
+    <section class="NoteWrapper">
+      <form id="NoteForm" autocomplete="off">
+        <input type="text" id="AddNoteInput" placeholder="افزودن یادداشت جدید" />
+        <button class="EditNoteBtn hidden"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentcolor" width="20" hieght="20">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+        </svg>
+        </button>
+        <button class="AddNoteBtn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" fill="currentcolor" d="M12 3.75a.75.75 0 01.75.75v6.75h6.75a.75.75 0 010 1.5h-6.75v6.75a.75.75 0 01-1.5 0v-6.75H4.5a.75.75 0 010-1.5h6.75V4.5a.75.75 0 01.75-.75z" clip-rule="evenodd" />
+        </svg>
+        </button>
+        <button class="ClearInputBtn">
+          <img src="./Assets/Images/eraser.svg" />
+        </button>
+      </form>
+      <div class="ColorsBox">
+            <p class="ColorBox" style="background-color: rgba(225, 29, 71, 0.329);"></p>
+            <p class="ColorBox" style="background-color: rgba(219, 39, 119, 0.329);"></p>
+            <p class="ColorBox" style="background-color: rgba(146, 51, 229, 0.329)"></p>
+            <p class="ColorBox" style="background-color: rgba(37, 99, 235, 0.329)"></p>
+            <p class="ColorBox" style="background-color: rgba(8, 145, 178, 0.329)"></p>
+            <p class="ColorBox" style="background-color: rgba(22, 163, 74, 0.329)"></p>
+            <p class="ColorBox" style="background-color: rgba(101, 163, 13, 0.329)"></p>
+            <p class="ColorBox" style="background-color: rgba(101, 163, 13, 0.329)"></p>
+            <p class="ColorBox" style="background-color: rgba(76, 29, 149, 0.329)"></p>
+            <p class="ColorBox" style="background-color: hsla(201, 90%, 27%, 0.329)"></p>
+      </div>
+    </section>
+      <div class="NoteItemsBody">
+     
+      </div>
+  </div>
+</main>
+  <button class="ScrollUp">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+    </svg>    
+  </button>
+    <script src="./JS/Main.js"></script>
+  </body>
+</html>
